@@ -20,6 +20,7 @@ class PokemonCard extends React.Component {
     // return stat.value;
   }
   handleFlip = () => {
+    this.props.onCardClick(this.props.pokemon.name);
     this.setState(prevState => {
       return {flipped: !prevState.flipped}
     })

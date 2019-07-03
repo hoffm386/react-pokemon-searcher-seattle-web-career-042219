@@ -9,7 +9,8 @@ class PokemonPage extends React.Component {
     super();
     this.state = {
       pokemons: [],
-      filteredPokemons: []
+      filteredPokemons: [],
+      mostRecentlyFlipped: null
     };
   }
 
@@ -38,14 +39,19 @@ class PokemonPage extends React.Component {
     })
   }
 
+  setMostRecentlyFlipped = (name) => {
+    this.setState({mostRecentlyFlipped: name});
+  }
+
   render() {
     return (
       <div>
         <h1>Pokemon Searcher</h1>
+        The most recently flipped pokemon is: {this.state.mostRecentlyFlipped}
         <br />
         <Search onSearchChange={_.debounce(this.searchCallback, 500)} showNoResults={false} />
         <br />
-        <PokemonCollection pokemons={this.state.filteredPokemons}/>
+        <PokemonCollection pokemons={this.state.filteredPokemons} onCollectionClick={this.setMostRecentlyFlipped}/>
         <br />
         <PokemonForm />
       </div>
